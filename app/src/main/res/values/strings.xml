@@ -4,4 +4,9 @@
     <string name="cannot_load_weather">Cannot load weather!</string>
     <string name="city_label">City</string>
     <string name="search_label">Search</string>
+    <string name="about_item_label">About</string>
+    <string name="favorites_item_label">Favorite</string>
+    <string name="settings_item_label">Settings</string>
+    <string name="about_app">Weather Forecast App version: 0.0.1</string>
+    <string name="about_api">Weather API by: https://openweathermap.org</string>
 </resources>

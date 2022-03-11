@@ -31,6 +31,7 @@ import com.konradjurkowski.weatherforecast.utils.Constant.BASE_PHOTO_URL
 import com.konradjurkowski.weatherforecast.utils.UiResult
 import com.konradjurkowski.weatherforecast.utils.formatDate
 import com.konradjurkowski.weatherforecast.utils.formatDecimals
+import com.konradjurkowski.weatherforecast.widgets.DropDownMenuItems
 import com.konradjurkowski.weatherforecast.widgets.HumidityWindyPressureRow
 import com.konradjurkowski.weatherforecast.widgets.SunsetSunRiseRow
 import com.konradjurkowski.weatherforecast.widgets.WeatherAppBar
@@ -80,6 +81,13 @@ fun MainScaffold(
                 title = "${weather.city.name}, ${weather.city.country}",
                 onAddActionClicked = {
                     navController.navigate(WeatherScreens.SearchScreen.name)
+                },
+                onMenuItemClicked = {
+                    when (it) {
+                        DropDownMenuItems.ABOUT -> navController.navigate(WeatherScreens.AboutScreen.name)
+                        DropDownMenuItems.FAVORITES -> navController.navigate(WeatherScreens.FavoriteScreen.name)
+                        DropDownMenuItems.SETTINGS -> navController.navigate(WeatherScreens.SettingsScreen.name)
+                    }
                 },
                 elevation = 6.dp
             )
