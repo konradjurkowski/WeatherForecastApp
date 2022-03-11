@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(
+    private val city: String,
     private val repository: WeatherRepository
 ) : ViewModel() {
 
@@ -24,7 +25,7 @@ class MainViewModel(
 
     private fun initWeather() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = repository.getWeather("Seattle")
+            val result = repository.getWeather(city)
             when (result) {
                 is Result.Success -> {
                     weather.value = UiResult.Success(result.data)

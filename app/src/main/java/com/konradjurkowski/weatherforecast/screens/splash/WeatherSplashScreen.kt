@@ -28,6 +28,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.konradjurkowski.weatherforecast.R
 import com.konradjurkowski.weatherforecast.navigation.WeatherScreens
+import com.konradjurkowski.weatherforecast.utils.Constant.DEFAULT_CITY
 import kotlinx.coroutines.delay
 
 @Composable
@@ -48,7 +49,7 @@ fun WeatherSplashScreen(
             )
         )
         delay(1000L)
-        navController.navigate(WeatherScreens.MainScreen.name)
+        navController.navigate("${WeatherScreens.MainScreen.name}/$DEFAULT_CITY")
     })
 
     Box(modifier = Modifier.fillMaxSize())

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">WeatherForecast</string>
     <string name="this_week_title">This Week</string>
+    <string name="cannot_load_weather">Cannot load weather!</string>
+    <string name="city_label">City</string>
+    <string name="search_label">Search</string>
 </resources>
