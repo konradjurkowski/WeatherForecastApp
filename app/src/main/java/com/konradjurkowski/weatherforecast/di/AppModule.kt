@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    viewModel { MainViewModel(get()) }
+    viewModel { MainViewModel(get(), get()) }
 
     factory { RetrofitBuilder() }
     single<WeatherApi> { get<RetrofitBuilder>().buildService() }

@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -36,11 +37,15 @@ import com.konradjurkowski.weatherforecast.widgets.WeatherAppBar
 import com.konradjurkowski.weatherforecast.widgets.WeatherImage
 import com.konradjurkowski.weatherforecast.widgets.WeeklyForecast
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun MainScreen(
     navController: NavController,
-    viewModel: MainViewModel = getViewModel()
+    city: String,
+    viewModel: MainViewModel = getViewModel(
+        parameters = { parametersOf(city) }
+    )
 ) {
     when (val weatherResult = viewModel.getWeather()) {
         is UiResult.Success -> {
@@ -48,7 +53,10 @@ fun MainScreen(
         }
         is UiResult.Failure -> {
             Box(Modifier.fillMaxSize()) {
-                Text(text = "Cannot load weather!")
+                Text(
+                    text = stringResource(id = R.string.cannot_load_weather),
+                    style = MaterialTheme.typography.subtitle2
+                )
             }
         }
         UiResult.Loading -> {

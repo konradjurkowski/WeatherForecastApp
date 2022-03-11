@@ -24,7 +24,7 @@ fun WeatherAppBar(
     icon: ImageVector? = null,
     isMainScreen: Boolean = true,
     elevation: Dp = 0.dp,
-    onAddActionClicked: () -> Unit,
+    onAddActionClicked: () -> Unit = { },
     onButtonClicked: () -> Unit = { }
 ) {
     TopAppBar(
