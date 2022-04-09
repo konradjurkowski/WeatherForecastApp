@@ -50,7 +50,11 @@ fun MainScreen(
 ) {
     when (val weatherResult = viewModel.getWeather()) {
         is UiResult.Success -> {
-            MainScaffold(weather = weatherResult.data, navController = navController)
+            MainScaffold(
+                weather = weatherResult.data,
+                navController = navController,
+                viewModel = viewModel
+            )
         }
         is UiResult.Failure -> {
             Box(Modifier.fillMaxSize()) {
@@ -73,7 +77,8 @@ fun MainScreen(
 @Composable
 fun MainScaffold(
     weather: Weather,
-    navController: NavController
+    navController: NavController,
+    viewModel: MainViewModel
 ) {
     Scaffold(
         topBar = {
@@ -88,6 +93,9 @@ fun MainScaffold(
                         DropDownMenuItems.FAVORITES -> navController.navigate(WeatherScreens.FavoriteScreen.name)
                         DropDownMenuItems.SETTINGS -> navController.navigate(WeatherScreens.SettingsScreen.name)
                     }
+                },
+                onFavoriteClicked = {
+                    viewModel.insertFavorite(it)
                 },
                 elevation = 6.dp
             )

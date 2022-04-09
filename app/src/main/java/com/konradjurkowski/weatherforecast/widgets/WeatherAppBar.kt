@@ -1,6 +1,7 @@
 package com.konradjurkowski.weatherforecast.widgets
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.konradjurkowski.weatherforecast.R
+import com.konradjurkowski.weatherforecast.model.Favorite
 
 @Composable
 fun WeatherAppBar(
@@ -47,7 +49,8 @@ fun WeatherAppBar(
     elevation: Dp = 0.dp,
     onAddActionClicked: () -> Unit = { },
     onButtonClicked: () -> Unit = { },
-    onMenuItemClicked: (DropDownMenuItems) -> Unit = { }
+    onMenuItemClicked: (DropDownMenuItems) -> Unit = { },
+    onFavoriteClicked: (Favorite) -> Unit = { }
 ) {
     val showDialog = remember { mutableStateOf(false) }
     ShowSettingDropDownMenu(
@@ -92,6 +95,18 @@ fun WeatherAppBar(
                         imageVector = icon,
                         contentDescription = "search_icon",
                         tint = MaterialTheme.colors.onSecondary
+                    )
+                }
+            }
+            if (isMainScreen) {
+                IconButton(onClick = {
+                    val dataList = title.split(",")
+                    onFavoriteClicked(Favorite(city = dataList[0], country = dataList[1]))
+                }) {
+                    Icon(
+                        imageVector = Icons.Default.FavoriteBorder,
+                        contentDescription = "Favorite icon",
+                        tint = Color.Red.copy(alpha = 0.6f)
                     )
                 }
             }
